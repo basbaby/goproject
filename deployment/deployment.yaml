@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ${projectName}
+  name: ${projectName}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${projectName}
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ${projectName}
+    spec:
+      containers:
+      - image: ${containerRegistry}.azurecr.io/${containerRepository}:${projectName}
+        name: ${containerRepository}
+        resources: {}
+      imagePullSecrets: 
+      - name: ${secretName}
+status: {}
